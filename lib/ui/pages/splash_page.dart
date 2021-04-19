@@ -10,6 +10,7 @@ class SplashPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
+            context.read<PageBloc>().add(GoToLoginPage());
           },
           child: Text("Go To Sign In Page"),
         ),
