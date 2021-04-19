@@ -8,8 +8,15 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   PageBloc() : super(OnInitialPage());
 
   @override
-  Stream<PageState> mapEventToState(PageEvent event) {
-    // TODO: implement mapEventToState
-    throw UnimplementedError();
+  Stream<PageState> mapEventToState(PageEvent event)async* {
+    if(event is GoToSplashPage){
+      yield OnSplashPage();
+    }
+    else if(event is GoToLoginPage){
+      yield OnLoginPage();
+    }
+    else if(event is GoToMainPage){
+      yield OnMainPage();
+    }
   }
 }
