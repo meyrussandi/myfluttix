@@ -1,10 +1,10 @@
 # myfluttix
 
-A new Flutter project.
+A Flutter project from BWA Course use a Bloc for State Management.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application for buy a movie ticket. The API is from the movie Database (TMDB).
 
 A few resources to get you started if this is your first Flutter project:
 
