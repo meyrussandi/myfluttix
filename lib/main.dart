@@ -18,8 +18,15 @@ class MyApp extends StatelessWidget {
     return StreamProvider.value(
         value: AuthServices.userStream,
         child: MultiBlocProvider(
-            providers: [BlocProvider(create: (_) => PageBloc())],
-            child: MaterialApp(
-                debugShowCheckedModeBanner: false, home: Wrapper())));
+            providers: [
+              BlocProvider(create: (_) => PageBloc()),
+              BlocProvider(create: (_) => UserBloc()),
+              BlocProvider(create: (_) => ThemeBloc()),
+            ],
+            child: BlocBuilder<ThemeBloc, ThemeState>(
+              builder:(_, themeState)=> MaterialApp(
+                theme: themeState.themeData,
+                  debugShowCheckedModeBanner: false, home: Wrapper()),
+            )));
   }
 }
