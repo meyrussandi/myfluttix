@@ -13,7 +13,7 @@ class LoadUser extends UserEvent{
   List<Object> get props => [id];
 }
 
-class SignOut extends Equatable{
+class SignOut extends UserEvent{
   @override
   List<Object> get props => [];
 
