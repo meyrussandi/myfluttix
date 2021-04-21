@@ -4,7 +4,6 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
@@ -39,9 +38,15 @@ class SplashPage extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
+                      context
+                          .read<PageBloc>()
+                          .add(GoToSignUpPage(RegistrationData()));
                     },
                     style: ElevatedButton.styleFrom(primary: purpleMainColor),
-                    child: Text("Get Started", style: whiteTextFont.copyWith(fontSize: 20),),
+                    child: Text(
+                      "Get Started",
+                      style: whiteTextFont.copyWith(fontSize: 20),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -50,13 +55,18 @@ class SplashPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  Text("Already have an Account? ", style: greyTextFont.copyWith(fontSize: 16),),
-                  InkWell(
-                      onTap: (){
-                        context.read<PageBloc>().add(GoToLoginPage());
-                      },
-                      child: Text("Sign In ",style: purpleTextFont.copyWith(fontSize: 18)))
-                ],)
+                    Text(
+                      "Already have an Account? ",
+                      style: greyTextFont.copyWith(fontSize: 16),
+                    ),
+                    InkWell(
+                        onTap: () {
+                          context.read<PageBloc>().add(GoToLoginPage());
+                        },
+                        child: Text("Sign In ",
+                            style: purpleTextFont.copyWith(fontSize: 18)))
+                  ],
+                )
               ],
             ),
           ),

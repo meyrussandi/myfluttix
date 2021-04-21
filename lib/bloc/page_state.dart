@@ -6,24 +6,44 @@ abstract class PageState extends Equatable {
 
 class OnInitialPage extends PageState {
   @override
-  // TODO: implement props
   List<Object> get props => [];
 }
 
 class OnLoginPage extends PageState {
   @override
-  // TODO: implement props
   List<Object> get props => [];
 }
 
 class OnSplashPage extends PageState {
   @override
-  // TODO: implement props
   List<Object> get props => [];
 }
 
 class OnMainPage extends PageState {
   @override
-  // TODO: implement props
+  List<Object> get props => [];
+}
+
+class OnSignUpPage extends PageState {
+  final RegistrationData registrationData;
+  OnSignUpPage(this.registrationData);
+
+  @override
+  List<Object> get props => [];
+}
+
+class OnPreferencePage extends PageState {
+  final RegistrationData registrationData;
+  OnPreferencePage(this.registrationData);
+
+  @override
+  List<Object> get props => [];
+}
+
+class OnAccountConfirmationPage extends PageState {
+  final RegistrationData registrationData;
+  OnAccountConfirmationPage(this.registrationData);
+
+  @override
   List<Object> get props => [];
 }
