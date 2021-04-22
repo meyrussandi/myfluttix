@@ -133,11 +133,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   SizedBox(height: 16),
                   TextField(
+                    obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(hintText: "Password"),
                   ),
                   SizedBox(height: 16),
                   TextField(
+                    obscureText: true,
                     controller: reTypePasswordController,
                     decoration: InputDecoration(hintText: "Confirm Password"),
                   ),
@@ -186,6 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 emailController.text;
                             widget.registrationData.password =
                                 passwordController.text;
+                            context.read<PageBloc>().add(GoToPreferencePage(widget.registrationData));
                           }
                         },
                         style:
