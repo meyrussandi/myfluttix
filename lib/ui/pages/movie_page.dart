@@ -107,20 +107,25 @@ class _MoviePageState extends State<MoviePage> {
         SizedBox(
           height: 140,
           child: BlocBuilder<MovieBloc, MovieState>(
-            builder: (_, movieState){
-              if(movieState is MovieLoaded){
-                List<MovieModel> movies = movieState.movies.sublist(0,10);
+            builder: (_, movieState) {
+              if (movieState is MovieLoaded) {
+                List<MovieModel> movies = movieState.movies.sublist(0, 10);
                 return ListView.builder(
                   itemCount: movies.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Container(
-                    margin: EdgeInsets.only(left: (index == 0) ? defaultMargin:0, right: (index == movies.length-1)?defaultMargin:16),
+                    margin: EdgeInsets.only(
+                        left: (index == 0) ? defaultMargin : 0,
+                        right:
+                            (index == movies.length - 1) ? defaultMargin : 16),
                     child: MovieCard(movies[index]),
-                ),
+                  ),
                 );
-              }
-              else{
-                return SpinKitFadingCircle(color: purpleMainColor,size: 50,);
+              } else {
+                return SpinKitFadingCircle(
+                  color: purpleMainColor,
+                  size: 50,
+                );
               }
             },
           ),
@@ -134,6 +139,80 @@ class _MoviePageState extends State<MoviePage> {
               style: blackTextFont.copyWith(
                   fontSize: 18, fontWeight: FontWeight.bold),
             )),
+        BlocBuilder<UserBloc, UserState>(
+          builder: (context, userState) {
+            if (userState is UserLoaded) {
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                      userState.userModel.selectedGenres.length,
+                      (index) => BrowseButton(
+                          userState.userModel.selectedGenres[index])),
+                ),
+              );
+            } else {
+              return SpinKitFadingCircle(
+                color: purpleMainColor,
+                size: 50,
+              );
+            }
+          },
+        ),
+
+        // note : COMING SOON
+        Container(
+            margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
+            child: Text(
+              "Coming Soon",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
+            )),
+        SizedBox(
+          height: 140,
+          child: BlocBuilder<MovieBloc, MovieState>(
+            builder: (_, movieState) {
+              if (movieState is MovieLoaded) {
+                List<MovieModel> movies = movieState.movies.sublist(10);
+                return ListView.builder(
+                  itemCount: movies.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => Container(
+                    margin: EdgeInsets.only(
+                        left: (index == 0) ? defaultMargin : 0,
+                        right:
+                            (index == movies.length - 1) ? defaultMargin : 16),
+                    child: ComingSoonCard(movies[index]),
+                  ),
+                );
+              } else {
+                return SpinKitFadingCircle(
+                  color: purpleMainColor,
+                  size: 50,
+                );
+              }
+            },
+          ),
+        ),
+        Container(
+            margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
+            child: Text(
+              "Get Lucky Day",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
+            )),
+        Column(
+          children: dummyPromos.map((e) {
+            return Padding(
+              padding:  EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+              child: PromoCard(e),
+            );
+          }).toList(),
+        ),
+        SizedBox(
+          height: 100,
+        )
       ],
     );
   }
