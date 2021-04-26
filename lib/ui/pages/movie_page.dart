@@ -96,6 +96,7 @@ class _MoviePageState extends State<MoviePage> {
             },
           ),
         ),
+        // note : NOW PLAYING
         Container(
             margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
             child: Text(
@@ -113,8 +114,8 @@ class _MoviePageState extends State<MoviePage> {
                   itemCount: movies.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Container(
-                    margin: EdgeInsets.all(5),
-                    child: Text(movies[index].title),
+                    margin: EdgeInsets.only(left: (index == 0) ? defaultMargin:0, right: (index == movies.length-1)?defaultMargin:16),
+                    child: MovieCard(movies[index]),
                 ),
                 );
               }
@@ -124,6 +125,15 @@ class _MoviePageState extends State<MoviePage> {
             },
           ),
         ),
+
+        // note : BROWSE MOVIE
+        Container(
+            margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
+            child: Text(
+              "Browse Movie",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
+            )),
       ],
     );
   }
