@@ -16,6 +16,14 @@ class UserModel extends Equatable {
       this.selectedLanguage,
       this.balance});
 
+  UserModel copyWith({String name, String profilePicture, int balance}) =>
+      UserModel(this.id, this.email,
+          name: name ?? this.name,
+          profilePicture: profilePicture ?? this.profilePicture,
+          balance: balance ?? this.balance,
+          selectedGenres: selectedGenres,
+          selectedLanguage: selectedLanguage);
+
   @override
   String toString() {
     // TODO: implement toString

@@ -21,6 +21,15 @@ class _MoviePageState extends State<MoviePage> {
           child: BlocBuilder<UserBloc, UserState>(
             builder: (_, userState) {
               if (userState is UserLoaded) {
+                if (imageFileToUpload != null) {
+                  uploadImage(imageFileToUpload).then((value) {
+                    imageFileToUpload = null;
+                    context
+                        .read<UserBloc>()
+                        .add(UpdateData(profileImage: value));
+                  });
+                }
+
                 return Row(
                   children: [
                     Container(
@@ -70,7 +79,9 @@ class _MoviePageState extends State<MoviePage> {
                             )),
                         Text(
                           NumberFormat.currency(
-                                  locale: "id_ID", decimalDigits: 0,symbol: "IDR ")
+                                  locale: "id_ID",
+                                  decimalDigits: 0,
+                                  symbol: "IDR ")
                               .format(userState.userModel.balance),
                           style: yellowNumberFont.copyWith(
                               fontSize: 14, fontWeight: FontWeight.w400),
@@ -84,7 +95,35 @@ class _MoviePageState extends State<MoviePage> {
               }
             },
           ),
-        )
+        ),
+        Container(
+            margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 20),
+            child: Text(
+              "Now Playing",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
+            )),
+        SizedBox(
+          height: 140,
+          child: BlocBuilder<MovieBloc, MovieState>(
+            builder: (_, movieState){
+              if(movieState is MovieLoaded){
+                List<MovieModel> movies = movieState.movies.sublist(0,10);
+                return ListView.builder(
+                  itemCount: movies.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => Container(
+                    margin: EdgeInsets.all(5),
+                    child: Text(movies[index].title),
+                ),
+                );
+              }
+              else{
+                return SpinKitFadingCircle(color: purpleMainColor,size: 50,);
+              }
+            },
+          ),
+        ),
       ],
     );
   }
