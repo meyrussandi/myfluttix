@@ -157,7 +157,10 @@ class MovieDetailPage extends StatelessWidget {
                             height: 50,
                             width: 250,
                             child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  context.read<PageBloc>().add(
+                                      GoToSelectSchedulePage(movieDetailModel));
+                                },
                                 style: ElevatedButton.styleFrom(
                                     primary: purpleMainColor),
                                 child: Text("Continue To Book",
