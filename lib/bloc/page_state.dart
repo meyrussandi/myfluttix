@@ -47,3 +47,10 @@ class OnAccountConfirmationPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnMovieDetailPage extends PageState {
+  final MovieModel movieModel;
+  OnMovieDetailPage(this.movieModel);
+  @override
+  List<Object> get props => [movieModel];
+}
