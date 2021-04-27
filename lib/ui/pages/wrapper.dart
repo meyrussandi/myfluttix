@@ -34,6 +34,16 @@ class Wrapper extends StatelessWidget {
                                 : (pageState is OnSelectSchedulePage)
                                     ? SelectSchedulePage(
                                         pageState.movieDetailModel)
-                                    : MainPage());
+                                    : (pageState is OnSelectSeatPage)
+                                        ? SelectSeatPage(pageState.ticketModel)
+                                        : (pageState is OnCheckoutPage)
+                                            ? CheckoutPage(
+                                                pageState.ticketModel)
+                                            : (pageState is OnSuccessPage)
+                                                ? SuccessPage(
+                                                    pageState.ticketModel,
+                                                    pageState
+                                                        .myFluttixTransactionModel)
+                                                : MainPage());
   }
 }

@@ -6,7 +6,6 @@ abstract class UserState extends Equatable{
 
 class UserInitial extends UserState{
   @override
-  // TODO: implement props
   List<Object> get props => [];
 
 }

@@ -11,6 +11,9 @@ class SelectSchedulePage extends StatefulWidget {
 class _SelectSchedulePageState extends State<SelectSchedulePage> {
   List<DateTime> dates;
   DateTime selectedDate;
+  int selectedTime;
+  TheaterModel selectedTheater;
+  bool isValid = false;
 
   @override
   void initState() {
@@ -83,9 +86,95 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                             }),
                           );
                         })),
+
+                // NOTE : CHOOSE TIME
+                generateTimeTable(),
+
+                // NOTE : NEXT BUTTON
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                    alignment: Alignment.topCenter,
+                    child: BlocBuilder<UserBloc, UserState>(
+                      builder:(context, userState)=> Container(
+                          width: 250,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if(isValid){
+                                context.read<PageBloc>().add(GoToSelectSeatPage(
+                                  TicketModel(
+                                    widget.movieDetailModel,
+                                    selectedTheater,
+                                    DateTime(selectedDate.year, selectedDate.month, selectedDate.day, selectedTime),
+                                    randomAlphaNumeric(12).toUpperCase(),
+                                    null,
+                                      (userState as UserLoaded).userModel.name,
+                                    null
+                                  )
+                                ));
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                                primary: isValid
+                                    ? purpleMainColor
+                                    : Color(0xffE4E4E4)),
+                            child: Text("NEXT",
+                                style: whiteTextFont.copyWith(fontSize: 20)),
+                          )),
+                    ))
               ],
             ),
           ],
         )));
+  }
+
+  Column generateTimeTable() {
+    List<int> schedule = List.generate(7, (index) => 10 + index * 2);
+    List<Widget> widgets = [];
+
+    for (var theater in dummyTheater) {
+      widgets.add(Container(
+          margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+          child: Text(
+            theater.name,
+            style: blackTextFont.copyWith(fontSize: 20),
+          )));
+
+      widgets.add(Container(
+        height: 50,
+        margin: EdgeInsets.only(bottom: 20),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: schedule.length,
+          itemBuilder: (context, index) => Container(
+            margin: EdgeInsets.only(
+                left: index == 0 ? defaultMargin : 0,
+                right: index == schedule.length - 1 ? defaultMargin : 16),
+            child: SelectableBox(
+              "${schedule[index]}:00",
+              height: 50,
+              isSelected:
+                  selectedTheater == theater && selectedTime == schedule[index],
+              isEnabled: schedule[index] > DateTime.now().hour ||
+                  selectedDate.day != DateTime.now().day,
+              onTap: () {
+                setState(() {
+                  selectedTheater = theater;
+                  selectedTime = schedule[index];
+                  isValid = true;
+                });
+              },
+            ),
+          ),
+        ),
+      ));
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widgets,
+    );
   }
 }

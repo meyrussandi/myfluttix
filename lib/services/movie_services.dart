@@ -37,16 +37,16 @@ class MovieServices {
 
     switch ((data as Map<String, dynamic>)["original_language"].toString()) {
       case "ja":
-        language = "japanese";
+        language = "Japanese";
         break;
       case "id":
-        language = "indonesia";
+        language = "Indonesia";
         break;
       case "ko":
-        language = "korean";
+        language = "Korean";
         break;
       case "en":
-        language = "english";
+        language = "English";
         break;
     }
 

@@ -26,6 +26,7 @@ class DateCard extends StatelessWidget {
                     color:
                         isSelected ? Colors.transparent : Color(0xffE4E4E4))),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(dateTime.shortDayName.toString(),
                     style: blackTextFont.copyWith(

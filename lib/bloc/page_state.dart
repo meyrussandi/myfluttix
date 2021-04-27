@@ -62,3 +62,29 @@ class OnSelectSchedulePage extends PageState {
   @override
   List<Object> get props => [movieDetailModel];
 }
+
+class OnSelectSeatPage extends PageState{
+  final TicketModel ticketModel;
+
+  OnSelectSeatPage( this.ticketModel);
+  @override
+  List<Object> get props => [ticketModel];
+
+}
+
+class OnCheckoutPage extends PageState{
+  final TicketModel ticketModel;
+  OnCheckoutPage(this.ticketModel);
+  @override
+  List<Object> get props => [ticketModel];
+
+}
+
+class OnSuccessPage extends PageState{
+  final TicketModel ticketModel;
+  final MyFluttixTransactionModel myFluttixTransactionModel;
+
+  OnSuccessPage(this.ticketModel, this.myFluttixTransactionModel);
+  @override
+  List<Object> get props => [ticketModel, myFluttixTransactionModel];
+}

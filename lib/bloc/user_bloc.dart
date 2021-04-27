@@ -22,6 +22,32 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           .copyWith(name: event.name, profilePicture: event.profileImage);
       await UserServices.updateUser(updateUser);
       yield UserLoaded(updateUser);
+    } else if (event is TopUp) {
+      if (state is UserLoaded) {
+        try {
+          UserModel updatedUserModel = (state as UserLoaded).userModel.copyWith(
+              balance: (state as UserLoaded).userModel.balance + event.amount);
+
+          await UserServices.updateUser(updatedUserModel);
+
+          yield UserLoaded(updatedUserModel);
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else if (event is Purchase) {
+      if (state is UserLoaded) {
+        try {
+          UserModel updatedUserModel = (state as UserLoaded).userModel.copyWith(
+              balance: (state as UserLoaded).userModel.balance - event.amount);
+
+          await UserServices.updateUser(updatedUserModel);
+
+          yield UserLoaded(updatedUserModel);
+        } catch (e) {
+          print(e);
+        }
+      }
     }
   }
 }

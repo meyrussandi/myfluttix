@@ -55,3 +55,29 @@ class GoToSelectSchedulePage extends PageEvent {
   @override
   List<Object> get props => [movieDetailModel];
 }
+
+class GoToSelectSeatPage extends PageEvent{
+  final TicketModel ticketModel;
+  GoToSelectSeatPage(this.ticketModel);
+
+  @override
+  List<Object> get props => [ticketModel];
+
+}
+
+class GoToCheckoutPage extends PageEvent{
+  final TicketModel ticketModel;
+  GoToCheckoutPage(this.ticketModel);
+  @override
+  List<Object> get props => [ticketModel];
+
+}
+
+class GoToSuccessPage extends PageEvent{
+  final TicketModel ticketModel;
+  final MyFluttixTransactionModel myFluttixTransactionModel;
+
+  GoToSuccessPage(this.ticketModel, this.myFluttixTransactionModel);
+  @override
+  List<Object> get props => [ticketModel, myFluttixTransactionModel];
+}
