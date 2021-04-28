@@ -12,6 +12,8 @@ class Wrapper extends StatelessWidget {
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
         context.read<UserBloc>().add(LoadUser(firebaseUser.uid));
+        context.read<TicketBloc>().add(GetTickets(firebaseUser.uid));
+
         prevPageEvent = GoToMainPage();
         context.read<PageBloc>().add(prevPageEvent);
       }
@@ -44,6 +46,13 @@ class Wrapper extends StatelessWidget {
                                                     pageState.ticketModel,
                                                     pageState
                                                         .myFluttixTransactionModel)
-                                                : MainPage());
+                                                : (pageState
+                                                        is OnTicketDetailPage)
+                                                    ? TicketDetailPage(
+                                                        pageState.ticketModel)
+                                                    : (pageState
+                                                            is OnProfilePage)
+                                                        ? ProfilePage()
+                                                        : MainPage());
   }
 }

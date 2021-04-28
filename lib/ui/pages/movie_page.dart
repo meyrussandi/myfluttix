@@ -32,33 +32,38 @@ class _MoviePageState extends State<MoviePage> {
 
                 return Row(
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border:
-                              Border.all(color: Color(0xff5F5588), width: 1)),
-                      child: Stack(
-                        children: [
-                          SpinKitFadingCircle(
-                            color: purpleAccentColor,
-                            size: 50,
-                          ),
-                          Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image:
-                                        (userState.userModel.profilePicture ==
-                                                "")
-                                            ? AssetImage("assets/user_pic.png")
-                                            : NetworkImage(userState
-                                                .userModel.profilePicture))),
-                          )
-                        ],
+                    InkWell(
+                      onTap:(){
+                        context.read<PageBloc>().add(GoToProfilePage());
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border:
+                                Border.all(color: Color(0xff5F5588), width: 1)),
+                        child: Stack(
+                          children: [
+                            SpinKitFadingCircle(
+                              color: purpleAccentColor,
+                              size: 50,
+                            ),
+                            Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image:
+                                          (userState.userModel.profilePicture ==
+                                                  "")
+                                              ? AssetImage("assets/user_pic.png")
+                                              : NetworkImage(userState
+                                                  .userModel.profilePicture))),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(

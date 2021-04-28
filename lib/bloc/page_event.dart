@@ -81,3 +81,18 @@ class GoToSuccessPage extends PageEvent{
   @override
   List<Object> get props => [ticketModel, myFluttixTransactionModel];
 }
+
+class GoToTicketDetailPage extends PageEvent{
+  final TicketModel ticketModel;
+  GoToTicketDetailPage(this.ticketModel);
+  @override
+  List<Object> get props => [ticketModel];
+
+}
+
+class GoToProfilePage extends PageEvent{
+
+  @override
+  List<Object> get props => [];
+
+}

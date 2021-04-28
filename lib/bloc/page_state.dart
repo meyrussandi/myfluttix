@@ -88,3 +88,19 @@ class OnSuccessPage extends PageState{
   @override
   List<Object> get props => [ticketModel, myFluttixTransactionModel];
 }
+
+class OnTicketDetailPage extends PageState{
+  final TicketModel ticketModel;
+  OnTicketDetailPage(this.ticketModel);
+  @override
+  List<Object> get props => [ticketModel];
+
+}
+
+class OnProfilePage extends PageState{
+
+  @override
+  List<Object> get props => [];
+
+}
+

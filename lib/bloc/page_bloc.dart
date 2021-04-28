@@ -32,6 +32,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCheckoutPage(event.ticketModel);
     } else if(event is GoToSuccessPage){
       yield OnSuccessPage(event.ticketModel, event.myFluttixTransactionModel);
+    } else if (event is GoToTicketDetailPage){
+      yield OnTicketDetailPage(event.ticketModel);
+    } else if(event is GoToProfilePage){
+      yield OnProfilePage();
     }
   }
 }
