@@ -16,20 +16,67 @@ class SuccessPage extends StatelessWidget {
               future: ticketModel != null
                   ? processingTicketOrder(context)
                   : processingTopUp(),
-              builder: (_, snapshot) =>
-                  (snapshot.connectionState == ConnectionState.done)
-                      ? ElevatedButton(
-                          onPressed: () {
-                            context.read<PageBloc>().add(GoToMainPage());
-                          },
-                          child: (Text("done")),
-                        )
-                      : Center(
-                          child: SpinKitFadingCircle(
-                            color: purpleMainColor,
-                            size: 50,
+              builder: (_, snapshot) => (snapshot.connectionState ==
+                      ConnectionState.done)
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            height: 150,
+                            width: 150,
+                            child: Icon(Icons.check_circle_outline_outlined,
+                                size: 50, color: purpleMainColor)),
+                        Text(
+                            ticketModel == null
+                                ? "Top Up Success!"
+                                : "Happy Watching!",
+                            style: blackTextFont.copyWith(fontSize: 20)),
+                        SizedBox(height: 16),
+                        Text(
+                            ticketModel == null
+                                ? "You have successfully\ntop up wallet"
+                                : "You have successfully\nbought the ticket",
+                            textAlign: TextAlign.center,
+                            style: blackTextFont.copyWith(
+                                fontSize: 16, fontWeight: FontWeight.w300)),
+                        Container(
+                          height: 50,
+                          width: 250,
+                          margin: EdgeInsets.only(top: 70, bottom: 30),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                primary: purpleMainColor),
+                            child: Text(
+                                ticketModel == null
+                                    ? "My Wallet"
+                                    : "My Tickets",
+                                style: whiteTextFont.copyWith(fontSize: 20)),
                           ),
-                        )),
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Discovery new movie? ",
+                                  style: greyTextFont.copyWith(
+                                      fontWeight: FontWeight.w400)),
+                              InkWell(
+                                onTap: () {
+                                  context.read<PageBloc>().add(GoToMainPage());
+                                },
+                                child: Text("Back to home ",
+                                    style: purpleTextFont.copyWith(
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                            ]),
+                      ],
+                    )
+                  : Center(
+                      child: SpinKitFadingCircle(
+                        color: purpleMainColor,
+                        size: 50,
+                      ),
+                    )),
         ));
   }
 
