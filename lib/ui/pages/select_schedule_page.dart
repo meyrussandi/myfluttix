@@ -97,23 +97,27 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 Align(
                     alignment: Alignment.topCenter,
                     child: BlocBuilder<UserBloc, UserState>(
-                      builder:(context, userState)=> Container(
+                      builder: (context, userState) => Container(
                           width: 250,
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              if(isValid){
+                              if (isValid) {
                                 context.read<PageBloc>().add(GoToSelectSeatPage(
-                                  TicketModel(
-                                    widget.movieDetailModel,
-                                    selectedTheater,
-                                    DateTime(selectedDate.year, selectedDate.month, selectedDate.day, selectedTime),
-                                    randomAlphaNumeric(12).toUpperCase(),
-                                    null,
-                                      (userState as UserLoaded).userModel.name,
-                                    null
-                                  )
-                                ));
+                                    TicketModel(
+                                        widget.movieDetailModel,
+                                        selectedTheater,
+                                        DateTime(
+                                            selectedDate.year,
+                                            selectedDate.month,
+                                            selectedDate.day,
+                                            selectedTime),
+                                        randomAlphaNumeric(12).toUpperCase(),
+                                        null,
+                                        (userState as UserLoaded)
+                                            .userModel
+                                            .name,
+                                        null)));
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -123,7 +127,8 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                             child: Text("NEXT",
                                 style: whiteTextFont.copyWith(fontSize: 20)),
                           )),
-                    ))
+                    )),
+                SizedBox(height: 50)
               ],
             ),
           ],

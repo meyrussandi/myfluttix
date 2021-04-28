@@ -63,24 +63,22 @@ class OnSelectSchedulePage extends PageState {
   List<Object> get props => [movieDetailModel];
 }
 
-class OnSelectSeatPage extends PageState{
+class OnSelectSeatPage extends PageState {
   final TicketModel ticketModel;
 
-  OnSelectSeatPage( this.ticketModel);
+  OnSelectSeatPage(this.ticketModel);
   @override
   List<Object> get props => [ticketModel];
-
 }
 
-class OnCheckoutPage extends PageState{
+class OnCheckoutPage extends PageState {
   final TicketModel ticketModel;
   OnCheckoutPage(this.ticketModel);
   @override
   List<Object> get props => [ticketModel];
-
 }
 
-class OnSuccessPage extends PageState{
+class OnSuccessPage extends PageState {
   final TicketModel ticketModel;
   final MyFluttixTransactionModel myFluttixTransactionModel;
 
@@ -89,18 +87,21 @@ class OnSuccessPage extends PageState{
   List<Object> get props => [ticketModel, myFluttixTransactionModel];
 }
 
-class OnTicketDetailPage extends PageState{
+class OnTicketDetailPage extends PageState {
   final TicketModel ticketModel;
   OnTicketDetailPage(this.ticketModel);
   @override
   List<Object> get props => [ticketModel];
-
 }
 
-class OnProfilePage extends PageState{
-
+class OnProfilePage extends PageState {
   @override
   List<Object> get props => [];
-
 }
 
+class OnTopUpPage extends PageState {
+  final PageEvent pageEvent;
+  OnTopUpPage(this.pageEvent);
+  @override
+  List<Object> get props => [pageEvent];
+}

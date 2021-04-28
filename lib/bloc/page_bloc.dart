@@ -28,14 +28,16 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnSelectSchedulePage(event.movieDetailModel);
     } else if (event is GoToSelectSeatPage) {
       yield OnSelectSeatPage(event.ticketModel);
-    } else if(event is GoToCheckoutPage){
+    } else if (event is GoToCheckoutPage) {
       yield OnCheckoutPage(event.ticketModel);
-    } else if(event is GoToSuccessPage){
+    } else if (event is GoToSuccessPage) {
       yield OnSuccessPage(event.ticketModel, event.myFluttixTransactionModel);
-    } else if (event is GoToTicketDetailPage){
+    } else if (event is GoToTicketDetailPage) {
       yield OnTicketDetailPage(event.ticketModel);
-    } else if(event is GoToProfilePage){
+    } else if (event is GoToProfilePage) {
       yield OnProfilePage();
+    } else if (event is GoToTopUpPage) {
+      yield OnTopUpPage(event.pageEvent);
     }
   }
 }

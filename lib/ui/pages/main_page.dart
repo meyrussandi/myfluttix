@@ -34,7 +34,6 @@ class _MainPageState extends State<MainPage> {
             },
             children: [
               MoviePage(),
-
               TicketPage(),
             ],
           ),
@@ -57,8 +56,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 onPressed: () {
-                  context.read<UserBloc>().add(SignOut());
-                  AuthServices.signOut();
+                  context.read<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
                 },
               ),
             ),

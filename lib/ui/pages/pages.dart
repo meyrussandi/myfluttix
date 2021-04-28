@@ -15,6 +15,7 @@ import 'package:myfluttix/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:myfluttix/services/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:random_string/random_string.dart';
 import 'package:myfluttix/extensions/extensions.dart';
 
@@ -34,3 +35,4 @@ part 'success_page.dart';
 part 'ticket_page.dart';
 part 'profile_page.dart';
 part 'ticket_detail_page.dart';
+part 'topup_page.dart';
