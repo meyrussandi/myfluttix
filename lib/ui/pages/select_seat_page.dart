@@ -135,7 +135,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
   }
 
   Column generateSeats() {
-    List<int> numberOfSeats = [3, 5, 5, 5, 5];
+    List<int> numberOfSeats = [4, 6, 6,6, 6, 6];
     List<Widget> widgets = [];
 
     for (int i = 0; i < numberOfSeats.length; i++) {

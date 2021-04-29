@@ -81,7 +81,9 @@ class ProfilePage extends StatelessWidget {
                           child: Divider(color: Colors.black)),
                       BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                         return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context.read<PageBloc>().add(GoToEditProfilePage((userState as UserLoaded).userModel));
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -99,7 +101,9 @@ class ProfilePage extends StatelessWidget {
                           margin: EdgeInsets.only(top: 10, bottom: 10),
                           child: Divider(color: Colors.black)),
                       InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            context.read<PageBloc>().add(GoToWalletPage(GoToProfilePage()));
+                          },
                           child: Row(
                             children: [
                               SizedBox(width: 10),

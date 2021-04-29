@@ -82,14 +82,19 @@ class _MoviePageState extends State<MoviePage> {
                               maxLines: 1,
                               overflow: TextOverflow.clip,
                             )),
-                        Text(
-                          NumberFormat.currency(
-                                  locale: "id_ID",
-                                  decimalDigits: 0,
-                                  symbol: "IDR ")
-                              .format(userState.userModel.balance),
-                          style: yellowNumberFont.copyWith(
-                              fontSize: 14, fontWeight: FontWeight.w400),
+                        InkWell(
+                          onTap:(){
+                            context.read<PageBloc>().add(GoToWalletPage(GoToMainPage()));
+                          },
+                          child: Text(
+                            NumberFormat.currency(
+                                    locale: "id_ID",
+                                    decimalDigits: 0,
+                                    symbol: "IDR ")
+                                .format(userState.userModel.balance),
+                            style: yellowNumberFont.copyWith(
+                                fontSize: 14, fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ],
                     )

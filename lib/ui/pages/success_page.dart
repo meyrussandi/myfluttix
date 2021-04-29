@@ -44,7 +44,14 @@ class SuccessPage extends StatelessWidget {
                           width: 250,
                           margin: EdgeInsets.only(top: 70, bottom: 30),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if(ticketModel == null){
+                                context.read<PageBloc>().add(GoToWalletPage(GoToMainPage(bottomNavBar: 0)));
+                              }else{
+                                context.read<PageBloc>().add(GoToMainPage(bottomNavBar: 1));
+
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                                 primary: purpleMainColor),
                             child: Text(

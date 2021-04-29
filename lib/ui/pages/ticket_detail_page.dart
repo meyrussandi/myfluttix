@@ -8,7 +8,7 @@ class TicketDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.read<PageBloc>().add(GoToMainPage());
+          context.read<PageBloc>().add(GoToMainPage(bottomNavBar: 1, isExpired: ticketModel.time.isBefore(DateTime.now())));
           return;
         },
         child: Scaffold(
@@ -28,7 +28,7 @@ class TicketDetailPage extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: GestureDetector(
                               onTap: () {
-                                context.read<PageBloc>().add(GoToMainPage());
+                                context.read<PageBloc>().add(GoToMainPage(bottomNavBar: 1, isExpired: ticketModel.time.isBefore(DateTime.now())));
                               },
                               child: Icon(
                                 Icons.arrow_back,
@@ -106,8 +106,7 @@ class TicketDetailPage extends StatelessWidget {
                                   children: [
                                     Text("Seat Number", style: greyTextFont),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: (MediaQuery.of(context).size.width - 4 * defaultMargin) / 2,
                                       child: Text(ticketModel.seatsInString,
                                           maxLines: 2,
                                           textAlign: TextAlign.end,
@@ -143,8 +142,7 @@ class TicketDetailPage extends StatelessWidget {
                                   children: [
                                     Text("Booking Code", style: greyTextFont),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: (MediaQuery.of(context).size.width - 4 * defaultMargin) / 2,
                                       child: Text(ticketModel.bookingCode,
                                           maxLines: 2,
                                           textAlign: TextAlign.end,
